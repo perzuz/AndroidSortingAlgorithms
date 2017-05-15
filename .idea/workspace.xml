@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da361873-aea5-4abc-81a9-511f0bf50e70" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SortingAlgorithms/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SortingAlgorithms/.idea/misc.xml" afterPath="$PROJECT_DIR$/SortingAlgorithms/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SortingAlgorithms/app/build.gradle" afterPath="$PROJECT_DIR$/SortingAlgorithms/app/build.gradle" />
     </list>
     <ignored path="AndroidSortingAlgorithms.iws" />
     <ignored path=".idea/workspace.xml" />
