@@ -1,7 +1,7 @@
-package Presenters;
+package kbb.sortingalgorithms.app.Presenters;
 
-import kbb.sortingalgorithms.Contracts.SelectAlgorithmPresenterContract;
-import kbb.sortingalgorithms.Contracts.SelectAlgorithmViewContract;
+import kbb.sortingalgorithms.app.SelectAlgorithmPresenterContract;
+import kbb.sortingalgorithms.app.SelectAlgorithmViewContract;
 
 /**
  * Created by Harris on 15/05/2017.
