@@ -3,13 +3,11 @@ package kbb.sortingalgorithms;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import Presenters.SelectAlgorithmPresenter;
-import kbb.sortingalgorithms.Contracts.SelectAlgorithmPresenterContract;
-import kbb.sortingalgorithms.Contracts.SelectAlgorithmViewContract;
+import kbb.sortingalgorithms.app.Presenters.SelectAlgorithmPresenter;
+import kbb.sortingalgorithms.app.SelectAlgorithmPresenterContract;
+import kbb.sortingalgorithms.app.SelectAlgorithmViewContract;
 
-import static org.junit.Assert.*;
-
-public class SelectAglorithmTests {
+public class SelectAlgorithmTests {
     @Test
     public void givenUserHasStartedApp_WhenTheUserSelectsTheBubbleSortAlgorithm_TheAlgorithmFactoryCreatesBubbleSort() throws Exception {
         //Arrange
@@ -20,6 +18,6 @@ public class SelectAglorithmTests {
         presenter.onBubbleSortAlgorithmButtonClicked();
 
         //Assert
-        Mockito.verify(view,Mockito.times(1)).openAlgorithmPageWithBubbleSort();
+        Mockito.verify(view, Mockito.times(1)).openAlgorithmPageWithBubbleSort();
     }
 }

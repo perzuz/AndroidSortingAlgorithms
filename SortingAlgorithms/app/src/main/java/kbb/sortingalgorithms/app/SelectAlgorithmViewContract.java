@@ -1,4 +1,4 @@
-package kbb.sortingalgorithms.Contracts;
+package kbb.sortingalgorithms.app;
 
 /**
  * Created by Harris on 15/05/2017.
