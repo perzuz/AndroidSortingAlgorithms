@@ -9,5 +9,5 @@ import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
 public interface DisplayAlgorithmView {
     void setPresenter(DisplayAlgorithmPresenter presenter);
 
-
+    void setTitle(String title);
 }
