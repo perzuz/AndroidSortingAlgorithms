@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import kbb.sortingalgorithms.R;
+import kbb.sortingalgorithms.app.Activities.SelectAlgorithmActivity;
 import kbb.sortingalgorithms.app.Presenters.SelectAlgorithmPresenter;
 import kbb.sortingalgorithms.databinding.FragmentSelectAlgorithmBinding;
 
@@ -43,5 +44,13 @@ public class SelectAlgorithmFragment extends android.support.v4.app.Fragment imp
     @Override
     public void setPresenter(SelectAlgorithmPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void showDisplayView(String algorithmKey) {
+
+        SelectAlgorithmActivity activity = (SelectAlgorithmActivity)getActivity();
+
+        activity.startFragment(new DisplayAlgorithmFragment(algorithmKey));
     }
 }
