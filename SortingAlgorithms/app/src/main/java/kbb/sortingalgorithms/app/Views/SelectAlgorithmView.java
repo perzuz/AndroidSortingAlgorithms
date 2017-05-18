@@ -7,6 +7,10 @@ import kbb.sortingalgorithms.app.Presenters.SelectAlgorithmPresenter;
  */
 
 public interface SelectAlgorithmView {
+
     void openAlgorithmPageWithBubbleSort();
+
     void setPresenter(SelectAlgorithmPresenter presenter);
+
+    void showDisplayView(String algorithmKey);
 }

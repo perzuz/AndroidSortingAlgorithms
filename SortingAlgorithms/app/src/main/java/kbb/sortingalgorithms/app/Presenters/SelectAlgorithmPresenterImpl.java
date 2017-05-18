@@ -1,6 +1,5 @@
 package kbb.sortingalgorithms.app.Presenters;
 
-import kbb.sortingalgorithms.app.Models.SelectAlgorithmModel;
 import kbb.sortingalgorithms.app.Views.SelectAlgorithmView;
 
 /**
@@ -9,16 +8,14 @@ import kbb.sortingalgorithms.app.Views.SelectAlgorithmView;
 
 public class SelectAlgorithmPresenterImpl implements SelectAlgorithmPresenter {
     private final SelectAlgorithmView view;
-    private final SelectAlgorithmModel model;
 
-    public SelectAlgorithmPresenterImpl(SelectAlgorithmView view, SelectAlgorithmModel model){
-        this.model = model;
+
+    public SelectAlgorithmPresenterImpl(SelectAlgorithmView view){
         this.view = view;
     }
 
     @Override
     public void onBubbleSortAlgorithmButtonClicked() {
-        model.getBubbleSortAlgorithm();
-        view.openAlgorithmPageWithBubbleSort();
+        view.showDisplayView("bubble_sort");
     }
 }
