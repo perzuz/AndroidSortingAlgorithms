@@ -2,6 +2,7 @@ package kbb.sortingalgorithms.app.Views;
 
 import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,14 +26,17 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
 
     private DisplayAlgorithmPresenter presenter;
 
-    public DisplayAlgorithmFragment(String algorithmKey){
+    private String algorithmKey;
 
+    public DisplayAlgorithmFragment(String algorithmKey){
+        this.algorithmKey = algorithmKey;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_display_algorithm, container, false);
+        this.presenter.onStart(this.algorithmKey);
 
         return binding.getRoot();
     }
@@ -40,5 +44,11 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
     @Override
     public void setPresenter(DisplayAlgorithmPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        binding.title.setPaintFlags(binding.title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        binding.title.setText(title);
     }
 }

@@ -5,4 +5,8 @@ package kbb.sortingalgorithms.app.Models;
  */
 
 public class DisplayAlgorithmModelImpl implements DisplayAlgorithmModel {
+    @Override
+    public String getTitleFromAlgorithmKey(String titleKey) {
+        return titleKey.replaceAll("_", " ");
+    }
 }

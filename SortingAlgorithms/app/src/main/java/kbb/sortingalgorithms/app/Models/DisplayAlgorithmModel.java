@@ -5,4 +5,5 @@ package kbb.sortingalgorithms.app.Models;
  */
 
 public interface DisplayAlgorithmModel {
+    String getTitleFromAlgorithmKey(String titleKey);
 }
