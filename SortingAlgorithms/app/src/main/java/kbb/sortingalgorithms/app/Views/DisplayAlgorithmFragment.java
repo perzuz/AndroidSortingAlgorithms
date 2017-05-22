@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 
@@ -56,23 +57,30 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
         binding.title.setPaintFlags(binding.title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.title.setText(title);
 
-        ArrayList<Integer> integers = new ArrayList<Integer>();
-        integers.add(0,24);
-        integers.add(1,12);
-        integers.add(2,36);
-        integers.add(3,65);
+        binding.chart.setData(getExampleBarData());
 
+    }
+
+    private BarData getExampleBarData(){
         ArrayList<BarEntry> entries = new ArrayList<>();
 
-        for (Integer data : integers) {
-            entries.add(new BarEntry(data,1));
-        }
+        entries.add(new BarEntry(0,4f));
+        entries.add(new BarEntry(1,8f));
+        entries.add(new BarEntry(2,6f));
+        entries.add(new BarEntry(3,12f));
+        entries.add(new BarEntry(4,18f));
+        entries.add(new BarEntry(5,9f));
 
-        BarEntry entry = new BarEntry(10,4);
-        BarData barData = new BarData();
-        barData.addEntry(entry,1);
+        BarDataSet dataSet = new BarDataSet(entries,"LABEL");
 
-        binding.chart.setData(barData);
-        binding.chart.invalidate();
+        ArrayList<String> labels = new ArrayList<>();
+        labels.add("January");
+        labels.add("February");
+        labels.add("March");
+        labels.add("April");
+        labels.add("May");
+        labels.add("June");
+
+        return new BarData(dataSet);
     }
 }
