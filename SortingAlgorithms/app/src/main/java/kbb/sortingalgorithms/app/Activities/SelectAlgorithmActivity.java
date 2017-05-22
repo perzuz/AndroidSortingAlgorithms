@@ -1,9 +1,10 @@
 package kbb.sortingalgorithms.app.Activities;
 
 import android.databinding.DataBindingUtil;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import kbb.sortingalgorithms.R;
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModel;
@@ -13,7 +14,6 @@ import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenterImpl;
 import kbb.sortingalgorithms.app.Presenters.SelectAlgorithmPresenter;
 import kbb.sortingalgorithms.app.Presenters.SelectAlgorithmPresenterImpl;
 import kbb.sortingalgorithms.app.Views.DisplayAlgorithmFragment;
-import kbb.sortingalgorithms.app.Views.DisplayAlgorithmView;
 import kbb.sortingalgorithms.app.Views.SelectAlgorithmFragment;
 import kbb.sortingalgorithms.databinding.ActivityMainBinding;
 
@@ -50,7 +50,8 @@ public class SelectAlgorithmActivity extends AppCompatActivity {
         view.setPresenter(displayPresenter);
 
         FragmentManager manager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(binding.getRoot().getId(), view).addToBackStack(view.getTag()).commit();
     }
 }
