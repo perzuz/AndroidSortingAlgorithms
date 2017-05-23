@@ -17,9 +17,9 @@ public class DisplayAlgorithmPresenterImpl implements DisplayAlgorithmPresenter 
     }
 
     @Override
-    public void onStart(String titleKey) {
-        String title = model.getTitleFromAlgorithmKey(titleKey);
+    public void onStart(String algorithmKey) {
+        String title = model.getTitleFromAlgorithmKey(algorithmKey);
         view.setTitle(title);
-
+        view.setChartData(model.getDefaultData());
     }
 }
