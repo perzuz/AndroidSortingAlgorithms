@@ -9,15 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import kbb.sortingalgorithms.R;
+import kbb.sortingalgorithms.app.Helpers.DisplayAlgorithmHelper;
 import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
 import kbb.sortingalgorithms.databinding.FragmentDisplayAlgorithmBinding;
 
@@ -56,31 +51,10 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
     public void setTitle(String title) {
         binding.title.setPaintFlags(binding.title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.title.setText(title);
-
-        binding.chart.setData(getExampleBarData());
-
     }
 
-    private BarData getExampleBarData(){
-        ArrayList<BarEntry> entries = new ArrayList<>();
-
-        entries.add(new BarEntry(0,4f));
-        entries.add(new BarEntry(1,8f));
-        entries.add(new BarEntry(2,6f));
-        entries.add(new BarEntry(3,12f));
-        entries.add(new BarEntry(4,18f));
-        entries.add(new BarEntry(5,9f));
-
-        BarDataSet dataSet = new BarDataSet(entries,"LABEL");
-
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        return new BarData(dataSet);
+    @Override
+    public void setChartData(ArrayList<Integer> data) {
+        binding.chart.setData(DisplayAlgorithmHelper.convertIntegerArrayListToBarData(data));
     }
 }
