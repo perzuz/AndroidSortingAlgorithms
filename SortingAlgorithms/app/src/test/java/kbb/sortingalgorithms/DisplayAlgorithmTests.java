@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import kbb.sortingalgorithms.app.Helpers.DataOrganiser;
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModel;
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModelImpl;
 import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
@@ -12,6 +13,7 @@ import kbb.sortingalgorithms.app.Views.DisplayAlgorithmView;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Harris on 18/05/2017.
@@ -36,8 +38,9 @@ public class DisplayAlgorithmTests {
     @Test
     public void givenUserHasStartedApp_WhenTheUserSelectsBubbleSortAlgorithm_TheTitleOfTheDisplayFragmentIsSetToBubbleSort() throws Exception {
         //Arrange
+        DataOrganiser dataOrganiser = mock(DataOrganiser.class);
         DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
-        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl();
+        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl(dataOrganiser);
         DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
         String titleKey = "test_title";
         String expectedTitle = "test title";
@@ -60,7 +63,6 @@ public class DisplayAlgorithmTests {
         //Act
         presenter.onStart(titleKey);
 
-
         //Assert
         verify(model).getDefaultData();
     }
@@ -68,8 +70,31 @@ public class DisplayAlgorithmTests {
     @Test
     public void givenUserHasStartedApp_WhenTheUserEntersDisplayMode_TheBarChartDisplaysDefaultData() throws Exception {
         //Arrange
+        DataOrganiser dataOrganiser = mock(DataOrganiser.class);
         DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
-        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl();
+        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl(dataOrganiser);
+        DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
+        String titleKey = "test_title";
+        ArrayList<Integer> defaultData = new ArrayList<>();
+        for (int i=1;i <= 100; i++){
+            defaultData.add(i);
+        }
+
+        when(dataOrganiser.shuffle(defaultData)).thenReturn(defaultData);
+
+        //Act
+        presenter.onStart(titleKey);
+
+        //Assert
+        verify(view).setChartData(defaultData);
+    }
+
+    @Test
+    public void givenUserHasStartedApp_WhenTheUserEntersDisplayMode_DefaultDataIsShuffled() throws Exception {
+        //Arrange
+        DataOrganiser dataOrganiser = mock(DataOrganiser.class);
+        DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
+        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl(dataOrganiser);
         DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
         String titleKey = "test_title";
         ArrayList<Integer> defaultData = new ArrayList<>();
@@ -81,6 +106,6 @@ public class DisplayAlgorithmTests {
         presenter.onStart(titleKey);
 
         //Assert
-        verify(view).setChartData(defaultData);
+        verify(dataOrganiser).shuffle(defaultData);
     }
 }
