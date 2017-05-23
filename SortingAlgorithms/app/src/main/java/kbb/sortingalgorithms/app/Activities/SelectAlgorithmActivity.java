@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import kbb.sortingalgorithms.R;
+import kbb.sortingalgorithms.app.Helpers.DataOrganiser;
+import kbb.sortingalgorithms.app.Helpers.DataOrganiserImpl;
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModel;
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModelImpl;
 import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
@@ -41,7 +43,9 @@ public class SelectAlgorithmActivity extends AppCompatActivity {
 
     public void startFragment(DisplayAlgorithmFragment fragment){
 
-        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl();
+        DataOrganiser dataOrganiser = new DataOrganiserImpl();
+
+        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl(dataOrganiser);
 
         DisplayAlgorithmFragment view = fragment;
 

@@ -10,4 +10,6 @@ public interface DisplayAlgorithmModel {
     String getTitleFromAlgorithmKey(String titleKey);
 
     ArrayList<Integer> getDefaultData();
+
+    ArrayList<Integer> shuffleData(ArrayList<Integer> data);
 }

@@ -1,5 +1,7 @@
 package kbb.sortingalgorithms.app.Presenters;
 
+import java.util.ArrayList;
+
 import kbb.sortingalgorithms.app.Models.DisplayAlgorithmModel;
 import kbb.sortingalgorithms.app.Views.DisplayAlgorithmView;
 
@@ -18,8 +20,7 @@ public class DisplayAlgorithmPresenterImpl implements DisplayAlgorithmPresenter 
 
     @Override
     public void onStart(String algorithmKey) {
-        String title = model.getTitleFromAlgorithmKey(algorithmKey);
-        view.setTitle(title);
-        view.setChartData(model.getDefaultData());
+        view.setTitle(model.getTitleFromAlgorithmKey(algorithmKey));
+        view.setChartData(model.shuffleData(model.getDefaultData()));
     }
 }
