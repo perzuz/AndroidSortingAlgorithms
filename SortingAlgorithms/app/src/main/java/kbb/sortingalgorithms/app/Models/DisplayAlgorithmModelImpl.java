@@ -11,6 +11,7 @@ import kbb.sortingalgorithms.app.Helpers.DataOrganiser;
 public class DisplayAlgorithmModelImpl implements DisplayAlgorithmModel {
     private final DataOrganiser dataOrganiser;
     private ArrayList<Integer> defaultData;
+    private String algorithmKey;
 
     public DisplayAlgorithmModelImpl(DataOrganiser dataOrganiser) {
         this.dataOrganiser = dataOrganiser;
@@ -21,6 +22,7 @@ public class DisplayAlgorithmModelImpl implements DisplayAlgorithmModel {
 
     @Override
     public String getTitleFromAlgorithmKey(String titleKey) {
+        this.algorithmKey = titleKey;
         return titleKey.replaceAll("_", " ");
     }
 
@@ -32,6 +34,16 @@ public class DisplayAlgorithmModelImpl implements DisplayAlgorithmModel {
     @Override
     public ArrayList<Integer> shuffleData(ArrayList<Integer> data) {
         return dataOrganiser.shuffle(data);
+    }
+
+    @Override
+    public ArrayList<ArrayList<Integer>> sort(ArrayList<Integer> data) throws Exception {
+        switch (algorithmKey){
+            case("bubble_sort"):
+                return  dataOrganiser.bubbleSort(data);
+            default:
+                throw new Exception("algorithm key not matched to any available algorithms");
+        }
     }
 
     private void populateDefaultData() {

@@ -12,4 +12,6 @@ public interface DisplayAlgorithmModel {
     ArrayList<Integer> getDefaultData();
 
     ArrayList<Integer> shuffleData(ArrayList<Integer> data);
+
+    ArrayList<ArrayList<Integer>> sort(ArrayList<Integer> data) throws Exception;
 }

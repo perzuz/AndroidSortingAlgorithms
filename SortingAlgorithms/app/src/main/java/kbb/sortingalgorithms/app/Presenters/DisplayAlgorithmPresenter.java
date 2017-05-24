@@ -6,4 +6,6 @@ package kbb.sortingalgorithms.app.Presenters;
 
 public interface DisplayAlgorithmPresenter {
     void onStart(String title);
+
+    void onSortButtonClicked();
 }

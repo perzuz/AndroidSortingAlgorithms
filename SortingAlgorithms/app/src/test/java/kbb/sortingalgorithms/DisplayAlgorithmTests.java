@@ -1,6 +1,7 @@
 package kbb.sortingalgorithms;
 
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,9 @@ import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
 import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenterImpl;
 import kbb.sortingalgorithms.app.Views.DisplayAlgorithmView;
 
+import static java.util.Arrays.asList;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -107,5 +111,73 @@ public class DisplayAlgorithmTests {
 
         //Assert
         verify(dataOrganiser).shuffle(defaultData);
+    }
+
+    @Test
+    public void givenTheUserHasEnteredDisplayMode_whenTheUserPressesTheSortButton_TheModelRecievesACallToSort() throws Exception {
+        //Arrange
+        DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
+        DisplayAlgorithmModel model = mock(DisplayAlgorithmModel.class);
+        DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
+
+        //Act
+        presenter.onSortButtonClicked();
+
+        //Assert
+        verify(model).sort(any(ArrayList.class));
+    }
+
+    @Test
+    public void givenTheUserHasEnteredBubbleSortDisplayMode_whenTheUserPressesTheSortButton_TheDataOrganiserBubbleSortsTheData() throws Exception {
+        //Arrange
+        DataOrganiser dataOrganiser = mock(DataOrganiser.class);
+        DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
+        DisplayAlgorithmModel model = new DisplayAlgorithmModelImpl(dataOrganiser);
+        DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
+        String algorithmKey = "bubble_sort";
+        ArrayList<Integer> defaultData = new ArrayList<>();
+        for (int i=1;i <= 100; i++){
+            defaultData.add(i);
+        }
+
+        //Act
+        presenter.onStart(algorithmKey);
+        presenter.onSortButtonClicked();
+
+        //Assert
+        verify(dataOrganiser).bubbleSort(defaultData);
+    }
+
+    @Test
+    public void givenTheUserHasEnteredBubbleSortDisplayMode_whenTheUserPressesTheSortButton_TheChartDataIsSetToEachIterationInOrder() throws Exception {
+        //Arrange
+        DisplayAlgorithmView view = mock(DisplayAlgorithmView.class);
+        DisplayAlgorithmModel model = mock(DisplayAlgorithmModel.class);
+        DisplayAlgorithmPresenter presenter = new DisplayAlgorithmPresenterImpl(view, model);
+        String algorithmKey = "bubble_sort";
+        ArrayList<Integer> defaultData = new ArrayList<>();
+        for (int i=3;i >= 1; i--){
+            defaultData.add(i);
+        }
+        when(model.getDefaultData()).thenReturn(defaultData);
+
+        ArrayList<Integer> firstPass = new ArrayList<>(asList(2,3,1));
+        ArrayList<Integer> secondPass = new ArrayList<>(asList(2,1,3));
+        ArrayList<Integer> thirdPass = new ArrayList<>(asList(1,2,3));
+
+        ArrayList<ArrayList<Integer>> dataSet = new ArrayList<>(asList(firstPass,secondPass,thirdPass));
+
+        when(model.sort(defaultData)).thenReturn(dataSet);
+
+        //Act
+        presenter.onStart(algorithmKey);
+        presenter.onSortButtonClicked();
+
+        //Assert
+        InOrder inOrder = inOrder(view);
+
+        inOrder.verify(view).setChartData(firstPass);
+        inOrder.verify(view).setChartData(secondPass);
+        inOrder.verify(view).setChartData(thirdPass);
     }
 }

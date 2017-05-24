@@ -9,4 +9,6 @@ import java.util.ArrayList;
 public interface DataOrganiser {
 
     ArrayList<Integer> shuffle(ArrayList<Integer> data);
+
+    ArrayList<ArrayList<Integer>> bubbleSort(ArrayList<Integer> data);
 }
