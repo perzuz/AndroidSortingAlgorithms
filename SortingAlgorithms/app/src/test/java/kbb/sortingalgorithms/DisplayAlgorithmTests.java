@@ -1,7 +1,5 @@
 package kbb.sortingalgorithms;
 
-import android.provider.ContactsContract;
-
 import org.junit.Test;
 import org.mockito.InOrder;
 
@@ -14,10 +12,8 @@ import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenter;
 import kbb.sortingalgorithms.app.Presenters.DisplayAlgorithmPresenterImpl;
 import kbb.sortingalgorithms.app.Views.DisplayAlgorithmView;
 
+import static java.util.Arrays.asList;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyListOf;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -165,25 +161,11 @@ public class DisplayAlgorithmTests {
         }
         when(model.getDefaultData()).thenReturn(defaultData);
 
-        ArrayList<Integer> firstPass = new ArrayList<>();
-        firstPass.add(2);
-        firstPass.add(3);
-        firstPass.add(1);
+        ArrayList<Integer> firstPass = new ArrayList<>(asList(2,3,1));
+        ArrayList<Integer> secondPass = new ArrayList<>(asList(2,1,3));
+        ArrayList<Integer> thirdPass = new ArrayList<>(asList(1,2,3));
 
-        ArrayList<Integer> secondPass = new ArrayList<>();
-        secondPass.add(2);
-        secondPass.add(1);
-        secondPass.add(3);
-
-        ArrayList<Integer> thirdPass = new ArrayList<>();
-        thirdPass.add(1);
-        thirdPass.add(2);
-        thirdPass.add(3);
-
-        ArrayList<ArrayList<Integer>> dataSet = new ArrayList<>();
-        dataSet.add(firstPass);
-        dataSet.add(secondPass);
-        dataSet.add(thirdPass);
+        ArrayList<ArrayList<Integer>> dataSet = new ArrayList<>(asList(firstPass,secondPass,thirdPass));
 
         when(model.sort(defaultData)).thenReturn(dataSet);
 

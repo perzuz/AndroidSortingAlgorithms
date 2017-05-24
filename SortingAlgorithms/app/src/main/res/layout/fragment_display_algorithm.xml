@@ -19,9 +19,18 @@
             android:layout_height="200dp"
             android:layout_margin="16dp"
             android:id="@+id/chart"
-            >
+            />
 
-        </com.github.mikephil.charting.charts.BarChart>
+        <Button
+            android:id="@+id/sortButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/algorithm_sort"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"
+            />
+
+
 
     </LinearLayout>
 </layout>
