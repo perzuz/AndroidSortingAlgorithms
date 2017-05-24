@@ -24,4 +24,9 @@ public class DataOrganiserImpl implements DataOrganiser {
 
         return data;
     }
+
+    @Override
+    public ArrayList<ArrayList<Integer>> bubbleSort(ArrayList<Integer> data) {
+        return null;
+    }
 }

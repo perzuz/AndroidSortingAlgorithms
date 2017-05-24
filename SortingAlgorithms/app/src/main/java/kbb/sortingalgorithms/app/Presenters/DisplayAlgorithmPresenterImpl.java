@@ -23,4 +23,17 @@ public class DisplayAlgorithmPresenterImpl implements DisplayAlgorithmPresenter 
         view.setTitle(model.getTitleFromAlgorithmKey(algorithmKey));
         view.setChartData(model.shuffleData(model.getDefaultData()));
     }
+
+    @Override
+    public void onSortButtonClicked() {
+        try {
+            ArrayList<ArrayList<Integer>> dataStream = model.sort(model.getDefaultData());
+
+            for (ArrayList<Integer> data : dataStream){
+                view.setChartData(data);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
