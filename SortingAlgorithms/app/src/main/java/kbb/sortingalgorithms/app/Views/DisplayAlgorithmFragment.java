@@ -21,7 +21,7 @@ import kbb.sortingalgorithms.databinding.FragmentDisplayAlgorithmBinding;
  */
 
 @SuppressLint("ValidFragment")
-public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment implements DisplayAlgorithmView{
+public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment implements DisplayAlgorithmView {
 
     private FragmentDisplayAlgorithmBinding binding;
 
@@ -29,7 +29,7 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
 
     private String algorithmKey;
 
-    public DisplayAlgorithmFragment(String algorithmKey){
+    public DisplayAlgorithmFragment(String algorithmKey) {
         this.algorithmKey = algorithmKey;
     }
 
@@ -38,6 +38,14 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_display_algorithm, container, false);
         this.presenter.onStart(this.algorithmKey);
+
+
+        binding.sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onSortButtonClicked();
+            }
+        });
 
         return binding.getRoot();
     }
@@ -56,5 +64,7 @@ public class DisplayAlgorithmFragment extends android.support.v4.app.Fragment im
     @Override
     public void setChartData(ArrayList<Integer> data) {
         binding.chart.setData(DisplayAlgorithmHelper.convertIntegerArrayListToBarData(data));
+        binding.chart.notifyDataSetChanged();
+        binding.chart.invalidate();
     }
 }

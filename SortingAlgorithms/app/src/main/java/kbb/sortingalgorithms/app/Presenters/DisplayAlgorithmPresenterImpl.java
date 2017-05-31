@@ -32,6 +32,7 @@ public class DisplayAlgorithmPresenterImpl implements DisplayAlgorithmPresenter 
             for (ArrayList<Integer> data : dataStream){
                 view.setChartData(data);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
